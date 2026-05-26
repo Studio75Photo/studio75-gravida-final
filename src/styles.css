@@ -1,0 +1,129 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Studio75 — Luxury Dark Editorial */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap");
+
+@theme inline {
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-sans: "Jost", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 2px;
+
+  /* Dark luxury palette */
+  --ink: oklch(0.16 0.005 90);        /* #1a1a18 */
+  --cream: oklch(0.96 0.012 80);      /* #F7F4EF */
+  --gold: oklch(0.74 0.085 75);       /* #C9A96E */
+  --muted-ink: oklch(0.58 0.008 80);  /* #8a8578 */
+
+  --background: var(--ink);
+  --foreground: var(--cream);
+
+  --card: oklch(0.20 0.005 90);
+  --card-foreground: var(--cream);
+  --popover: var(--ink);
+  --popover-foreground: var(--cream);
+
+  --primary: var(--gold);
+  --primary-foreground: var(--ink);
+  --secondary: oklch(0.22 0.005 90);
+  --secondary-foreground: var(--cream);
+  --muted: oklch(0.22 0.005 90);
+  --muted-foreground: var(--muted-ink);
+  --accent: var(--gold);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.28 0.005 85);
+  --input: oklch(0.28 0.005 85);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .text-balance { text-wrap: balance; }
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--color-muted-foreground);
+  }
+  .gold-divider {
+    height: 1px; width: 64px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  }
+  .gold-glow-top {
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, color-mix(in oklab, var(--gold) 22%, transparent), transparent 70%);
+  }
+  .gold-glow-bottom {
+    background: radial-gradient(ellipse 80% 50% at 50% 100%, color-mix(in oklab, var(--gold) 22%, transparent), transparent 70%);
+  }
+  .placeholder-frame {
+    background:
+      linear-gradient(135deg, oklch(0.22 0.006 85) 0%, oklch(0.18 0.005 90) 100%);
+    position: relative;
+  }
+  .placeholder-frame::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(135deg, transparent 49.5%, color-mix(in oklab, var(--gold) 8%, transparent) 50%, transparent 50.5%);
+    background-size: 24px 24px;
+    opacity: 0.4;
+  }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .9s ease, transform .9s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+}
